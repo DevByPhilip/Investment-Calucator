@@ -1,73 +1,50 @@
-import React from "react";
-import { useState } from "react";
-
-const UserInput = () => {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 10000,
-    annualInvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
-  });
-
-  function handleChange(inputId, newValue) {
-    setUserInput((prevUserInput) => {
-      return {
-        ...prevUserInput,
-        [inputId]: newValue,
-      };
-    });
-  }
-
+export default function UserInput({ onChange, userInput }) {
   return (
     <section id="user-input">
       <div className="input-group">
         <p>
-          <label htmlFor="">Initial Investment</label>
+          <label>Initial Investment</label>
           <input
             type="number"
             required
             value={userInput.initialInvestment}
             onChange={(event) =>
-              handleChange("initialinvestment", event.target.value)
+              onChange("initialInvestment", event.target.value)
             }
           />
         </p>
         <p>
-          <label htmlFor="">Annual investment</label>
+          <label>Annual Investment</label>
           <input
             type="number"
             required
             value={userInput.annualInvestment}
             onChange={(event) =>
-              handleChange("initialinvestment", event.target.value)
+              onChange("annualInvestment", event.target.value)
             }
           />
         </p>
       </div>
       <div className="input-group">
         <p>
-          <label htmlFor="">Expected Return</label>
+          <label>Expected Return</label>
           <input
             type="number"
             required
             value={userInput.expectedReturn}
-            onChange={(event) =>
-              handleChange("expectedReturn", event.target.value)
-            }
+            onChange={(event) => onChange("expectedReturn", event.target.value)}
           />
         </p>
         <p>
-          <label htmlFor="">Duration</label>
+          <label>Duration</label>
           <input
             type="number"
             required
             value={userInput.duration}
-            onChange={(event) => handleChange("duration", event.target.value)}
+            onChange={(event) => onChange("duration", event.target.value)}
           />
         </p>
       </div>
     </section>
   );
-};
-
-export default UserInput;
+}
